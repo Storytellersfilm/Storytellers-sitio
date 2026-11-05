@@ -1,4 +1,6 @@
 StorytellerS Cinematography - sitio web
 ---------------------------------------
-Archivo principal: index.html (todo el sitio, con video y fotos incluidos).
-Para actualizar el sitio: reemplaza index.html en GitHub y Vercel publica solo.
+Archivos (suban TODOS a la raiz del repositorio de GitHub, sin carpetas):
+- index.html          -> todo el sitio, con video y fotos incluidos
+- favicon.ico         -> icono de la pestana del navegador
+- icon-48.png, icon-192.png, icon-512.png, apple-touch-icon.png -> iconos para Google, celulares y accesos directos
