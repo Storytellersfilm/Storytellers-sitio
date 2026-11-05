@@ -1,0 +1,4 @@
+StorytellerS Cinematography - sitio web
+---------------------------------------
+Archivo principal: index.html (todo el sitio, con video y fotos incluidos).
+Para actualizar el sitio: reemplaza index.html en GitHub y Vercel publica solo.
