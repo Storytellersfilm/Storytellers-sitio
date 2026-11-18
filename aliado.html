@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Beneficios | StorytellerS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --morado: #341539;
+    --dorado: #D8C3A5;
+    --dorado-oscuro: #8a6f45;
+    --crema: #F5F3ED;
+    --texto: #2a1a2d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--crema);
+    color: var(--texto);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 20px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--dorado-oscuro); outline-offset: 3px; }
+
+  .marca {
+    background: var(--morado);
+    color: var(--dorado);
+    padding: 22px 6vw;
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .marca span { font-weight: 400; font-style: italic; font-size: 1rem; margin-left: .6em; opacity: .8; }
+
+  .hero {
+    background: var(--morado);
+    color: var(--crema);
+    padding: 7vh 6vw 12vh;
+  }
+  .hero-inner { max-width: 880px; }
+  .hero p {
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--dorado);
+    margin-bottom: .3em;
+  }
+  .hero h1 {
+    font-weight: 500;
+    font-size: clamp(2.8rem, 10vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -.01em;
+  }
+
+  main { max-width: 880px; margin: 0 auto; padding: 0 6vw; }
+
+  .beneficio {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 52px 0;
+    border-bottom: 1px solid var(--dorado);
+  }
+  .beneficio:first-child { margin-top: -6vh; background: var(--crema); padding-top: 52px; }
+  .beneficio h2 {
+    font-weight: 600;
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    line-height: 1.1;
+    color: var(--morado);
+  }
+  .beneficio p { max-width: 56ch; }
+  .beneficio img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  @media (min-width: 760px) {
+    .beneficio.con-imagen { grid-template-columns: 1.1fr 1fr; gap: 44px; align-items: center; }
+  }
+
+  .contacto { padding: 56px 0 24px; }
+  .contacto p { font-style: italic; font-size: 1.3rem; margin-bottom: 20px; }
+  .boton {
+    display: inline-block;
+    background: var(--morado);
+    color: var(--dorado);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 14px 30px;
+    transition: background .2s, color .2s;
+  }
+  .boton:hover { background: var(--dorado); color: var(--morado); }
+
+  .condiciones {
+    font-size: .95rem;
+    color: #5b4a5e;
+    padding: 28px 0 56px;
+    max-width: 70ch;
+  }
+
+  footer {
+    background: var(--morado);
+    color: var(--dorado);
+    text-align: center;
+    padding: 28px 6vw;
+    font-size: .95rem;
+    letter-spacing: .06em;
+  }
+
+  .error { padding: 18vh 6vw; text-align: center; }
+  .error h1 { color: var(--morado); font-weight: 500; font-size: 2.4rem; margin-bottom: .4em; }
+</style>
+</head>
+<body>
+<div class="marca">StorytellerS <span>Cinematography</span></div>
+<div id="app"></div>
+<footer>StorytellerS Cinematography · Puebla, México</footer>
+
+<script>
+(async function () {
+  const app = document.getElementById("app");
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function noEncontrada() {
+    app.replaceChildren();
+    const box = el("div", "error");
+    box.append(el("h1", "", "Esta página no está disponible"));
+    box.append(el("p", "", "Revisa que el enlace esté completo o escríbenos para recibir uno nuevo."));
+    app.append(box);
+  }
+
+  const slug = decodeURIComponent(location.pathname.split("/").filter(Boolean).pop() || "")
+    .toLowerCase();
+
+  let data;
+  try {
+    const r = await fetch("/aliados.json", { cache: "no-cache" });
+    data = await r.json();
+  } catch (e) { return noEncontrada(); }
+
+  const a = data[slug];
+  if (!a) return noEncontrada();
+
+  document.title = a.nombre + " | Beneficios StorytellerS";
+
+  const hero = el("section", "hero");
+  const inner = el("div", "hero-inner");
+  inner.append(el("p", "", a.intro || "Te obsequia estos exclusivos beneficios"));
+  inner.append(el("h1", "", a.nombre));
+  hero.append(inner);
+
+  const main = el("main");
+  (a.beneficios || []).forEach(function (b) {
+    const art = el("article", "beneficio");
+    const textos = el("div");
+    textos.append(el("h2", "", b.titulo));
+    textos.append(el("p", "", b.texto));
+    textos.firstChild.style.marginBottom = "14px";
+    art.append(textos);
+    if (b.imagen) {
+      const img = new Image();
+      img.alt = b.titulo;
+      img.loading = "lazy";
+      img.onload = function () { art.classList.add("con-imagen"); art.append(img); };
+      img.src = b.imagen;
+    }
+    main.append(art);
+  });
+
+  if (a.whatsapp) {
+    const c = el("section", "contacto");
+    c.append(el("p", "", "¿Lista para usar tus beneficios?"));
+    const btn = el("a", "boton", "Escríbenos por WhatsApp");
+    btn.href = "https://wa.me/" + encodeURIComponent(a.whatsapp) +
+      "?text=" + encodeURIComponent(a.mensaje || "");
+    btn.target = "_blank";
+    btn.rel = "noopener";
+    c.append(btn);
+    main.append(c);
+  }
+
+  if (a.condiciones) main.append(el("p", "condiciones", a.condiciones));
+
+  app.replaceChildren(hero, main);
+})();
+</script>
+</body>
+</html>
