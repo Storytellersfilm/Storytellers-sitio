@@ -34,13 +34,11 @@
 
   .marca {
     background: var(--morado);
-    color: var(--dorado);
-    padding: 24px var(--margen);
-    font-size: 1.45rem;
-    font-weight: 600;
-    letter-spacing: .04em;
+    padding: 26px var(--margen);
   }
-  .marca span { font-weight: 400; font-style: italic; font-size: 1rem; margin-left: .6em; opacity: .8; }
+  .marca a { display: inline-block; line-height: 0; }
+  .marca img { height: clamp(34px, 5vw, 46px); width: auto; display: block; transition: opacity .2s; }
+  .marca a:hover img { opacity: .8; }
 
   .hero {
     background: var(--morado);
@@ -149,7 +147,11 @@
 </style>
 </head>
 <body>
-<div class="marca">StorytellerS <span>Cinematography</span></div>
+<header class="marca">
+  <a href="/" target="_blank" rel="noopener" aria-label="Ir al sitio de StorytellerS Cinematography">
+    <img src="/img/logo-storytellers.png" alt="StorytellerS Cinematography" width="700" height="150">
+  </a>
+</header>
 <div id="app"></div>
 <footer>StorytellerS Cinematography · Puebla, México</footer>
 
