@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/aliados/:slug", "destination": "/aliado.html" }
+    { "source": "/embajadores/:slug", "destination": "/aliado.html" }
   ]
 }
