@@ -15,6 +15,9 @@
     --dorado-oscuro: #8a6f45;
     --crema: #F5F3ED;
     --texto: #2a1a2d;
+    --ancho: 1120px;
+    --lado: clamp(22px, 5vw, 56px);
+    --margen: max(var(--lado), calc((100% - var(--ancho)) / 2));
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -32,7 +35,7 @@
   .marca {
     background: var(--morado);
     color: var(--dorado);
-    padding: 22px 6vw;
+    padding: 24px var(--margen);
     font-size: 1.45rem;
     font-weight: 600;
     letter-spacing: .04em;
@@ -42,9 +45,9 @@
   .hero {
     background: var(--morado);
     color: var(--crema);
-    padding: 7vh 6vw 12vh;
+    padding: 9vh var(--margen) 10vh;
   }
-  .hero-inner { max-width: 880px; }
+  .hero-inner { max-width: 900px; }
   .hero p {
     font-style: italic;
     font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -58,16 +61,15 @@
     letter-spacing: -.01em;
   }
 
-  main { max-width: 880px; margin: 0 auto; padding: 0 6vw; }
+  main { padding: 0 var(--margen); }
 
   .beneficio {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
-    padding: 52px 0;
+    padding: 56px 0;
     border-bottom: 1px solid var(--dorado);
   }
-  .beneficio:first-child { margin-top: -6vh; background: var(--crema); }
   .beneficio h2 {
     font-weight: 600;
     font-size: clamp(1.9rem, 5vw, 2.6rem);
@@ -106,11 +108,13 @@
   .media .panel.chico { font-size: clamp(1.6rem, 5vw, 2.2rem); font-style: italic; }
 
   @media (min-width: 760px) {
-    .beneficio { grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .beneficio { grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 88px); align-items: center; padding: 72px 0; }
+    .beneficio h2 { font-size: clamp(2.2rem, 3.6vw, 3rem); }
+    .beneficio p { font-size: 1.3rem; }
     .beneficio:nth-of-type(even) .media { order: -1; }
   }
 
-  .contacto { padding: 56px 0 24px; }
+  .contacto { padding: 64px 0 28px; }
   .contacto p { font-style: italic; font-size: 1.3rem; margin-bottom: 20px; }
   .boton {
     display: inline-block;
@@ -135,7 +139,7 @@
     background: var(--morado);
     color: var(--dorado);
     text-align: center;
-    padding: 28px 6vw;
+    padding: 30px var(--margen);
     font-size: .95rem;
     letter-spacing: .06em;
   }
