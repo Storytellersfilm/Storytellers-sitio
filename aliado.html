@@ -63,29 +63,51 @@
   .beneficio {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 24px;
     padding: 52px 0;
     border-bottom: 1px solid var(--dorado);
   }
-  .beneficio:first-child { margin-top: -6vh; background: var(--crema); padding-top: 52px; }
+  .beneficio:first-child { margin-top: -6vh; background: var(--crema); }
   .beneficio h2 {
     font-weight: 600;
-    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
     line-height: 1.1;
     color: var(--morado);
+    margin-bottom: 14px;
   }
-  .beneficio p { max-width: 56ch; }
-  .beneficio img {
+  .beneficio p { max-width: 52ch; }
+
+  .media {
     width: 100%;
-    max-height: 420px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--morado);
+    position: relative;
+  }
+  .media img, .media video {
+    width: 100%; height: 100%;
     object-fit: cover;
     display: block;
   }
-  .beneficio video { width: 100%; max-height: 520px; object-fit: cover; display: block; background: #000; }
-  .beneficio .vimeo { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
-  .beneficio .vimeo iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .media .panel {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--dorado);
+    font-weight: 500;
+    font-size: clamp(3rem, 12vw, 5.5rem);
+    letter-spacing: .02em;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid var(--dorado);
+    outline: 8px solid var(--morado);
+    outline-offset: -9px;
+  }
+  .media .panel.chico { font-size: clamp(1.6rem, 5vw, 2.2rem); font-style: italic; }
+
   @media (min-width: 760px) {
-    .beneficio.con-imagen { grid-template-columns: 1.1fr 1fr; gap: 44px; align-items: center; }
+    .beneficio { grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .beneficio:nth-of-type(even) .media { order: -1; }
   }
 
   .contacto { padding: 56px 0 24px; }
@@ -167,43 +189,48 @@
   hero.append(inner);
 
   const main = el("main");
+
+  function panel(texto) {
+    const p = el("div", "panel", texto || "StorytellerS");
+    if (!texto) p.classList.add("chico");
+    return p;
+  }
+
   (a.beneficios || []).forEach(function (b) {
     const art = el("article", "beneficio");
     const textos = el("div");
     textos.append(el("h2", "", b.titulo));
     textos.append(el("p", "", b.texto));
-    textos.firstChild.style.marginBottom = "14px";
-    art.append(textos);
+
+    const media = el("div", "media");
     if (b.vimeo) {
-      const w = el("div", "vimeo");
       const f = document.createElement("iframe");
       f.src = "https://player.vimeo.com/video/" + encodeURIComponent(b.vimeo) + "?title=0&byline=0&portrait=0";
       f.allow = "autoplay; fullscreen; picture-in-picture";
       f.allowFullscreen = true;
       f.loading = "lazy";
       f.title = b.titulo;
-      w.append(f);
-      art.classList.add("con-imagen");
-      art.append(w);
+      media.append(f);
     } else if (b.video) {
       const v = document.createElement("video");
       v.src = b.video;
-      v.muted = true;
-      v.loop = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.controls = true;
+      v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.controls = true;
       v.preload = "metadata";
       if (b.poster) v.poster = b.poster;
-      v.onloadedmetadata = function () { art.classList.add("con-imagen"); art.append(v); };
-      v.load();
+      v.onerror = function () { media.replaceChildren(panel(b.destacado)); };
+      media.append(v);
     } else if (b.imagen) {
       const img = new Image();
       img.alt = b.titulo;
       img.loading = "lazy";
-      img.onload = function () { art.classList.add("con-imagen"); art.append(img); };
+      img.onerror = function () { media.replaceChildren(panel(b.destacado)); };
       img.src = b.imagen;
+      media.append(img);
+    } else {
+      media.append(panel(b.destacado));
     }
+
+    art.append(textos, media);
     main.append(art);
   });
 
