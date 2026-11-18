@@ -32,29 +32,24 @@
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--dorado-oscuro); outline-offset: 3px; }
 
-  .marca {
-    background: var(--morado);
-    padding: 11px var(--margen);
-  }
-  .marca a { display: inline-block; line-height: 0; }
-  .marca img { height: clamp(18px, 2.4vw, 24px); width: auto; display: block; transition: opacity .2s; }
-  .marca a:hover img { opacity: .8; }
-
   .hero {
     background: var(--morado);
     color: var(--crema);
-    padding: 7vh var(--margen) 9vh;
+    padding: clamp(26px, 5vh, 44px) var(--margen) clamp(28px, 5.5vh, 48px);
   }
   .hero-inner { max-width: 900px; }
+  .hero .logo { display: inline-block; line-height: 0; margin-top: clamp(16px, 2.6vh, 24px); }
+  .hero .logo img { height: clamp(18px, 2.4vw, 24px); width: auto; display: block; transition: opacity .2s; }
+  .hero .logo:hover img { opacity: .75; }
   .hero p {
     font-style: italic;
     font-size: clamp(1.2rem, 3vw, 1.7rem);
     color: var(--dorado);
-    margin-top: .7em;
+    margin-top: .5em;
   }
   .hero h1 {
     font-weight: 500;
-    font-size: clamp(2.8rem, 10vw, 6.5rem);
+    font-size: clamp(2.6rem, 9vw, 5.6rem);
     line-height: 1;
     letter-spacing: -.01em;
   }
@@ -147,11 +142,6 @@
 </style>
 </head>
 <body>
-<header class="marca">
-  <a href="/" target="_blank" rel="noopener" aria-label="Ir al sitio de StorytellerS Cinematography">
-    <img src="/img/logo-storytellers.png" alt="StorytellerS Cinematography" width="700" height="150">
-  </a>
-</header>
 <div id="app"></div>
 <footer>StorytellerS Cinematography · Puebla, México</footer>
 
@@ -192,6 +182,16 @@
   const inner = el("div", "hero-inner");
   inner.append(el("h1", "", a.nombre));
   inner.append(el("p", "", a.intro || "Te obsequia estos exclusivos beneficios"));
+  const logo = el("a", "logo");
+  logo.href = "/";
+  logo.target = "_blank";
+  logo.rel = "noopener";
+  logo.setAttribute("aria-label", "Ir al sitio de StorytellerS Cinematography");
+  const li = new Image();
+  li.src = "/img/logo-storytellers.png";
+  li.alt = "StorytellerS Cinematography";
+  logo.append(li);
+  inner.append(logo);
   hero.append(inner);
 
   const main = el("main");
