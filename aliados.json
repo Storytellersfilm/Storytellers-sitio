@@ -1,4 +1,4 @@
-
+{
   "fernanda-fernandez": {
     "nombre": "Fernanda Fernández",
     "intro": "Te obsequia estos exclusivos beneficios",
@@ -8,17 +8,17 @@
       {
         "titulo": "10% de descuento exclusivo",
         "texto": "Eres de los pocos afortunados. Disfruta de este descuento al contratar cualquiera de los paquetes Premium de Storytellers.",
-        "imagen": "",
+        "imagen": ""
       },
       {
         "titulo": "Vintage Case con 40 fotos",
         "texto": "Exclusivo para nuestros únicos 10 clientes Premium. Estuche de bambú con 40 fotografías en el interior de 5x6 pulgadas.",
-        "imagen": "/img/vintage-case.jpg",
+        "imagen": "/img/vintage-case.jpg"
       },
       {
         "titulo": "e-Session",
         "texto": "1 hora de cobertura para una sesión fotográfica previa a la boda, que te dará el material fotográfico para el gran anuncio.",
-        "video": "/img/save-the-date.mp4",
+        "video": "/img/save-the-date.mp4"
       }
     ],
     "condiciones": "Estos beneficios no son acumulables con otras promociones, no son intercambiables por dinero en efectivo, ni por descuentos y servicios de Storytellers. Las locaciones para sesiones fotográficas las debe cubrir el beneficiario. Aplican restricciones."
