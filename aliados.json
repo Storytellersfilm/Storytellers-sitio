@@ -8,7 +8,7 @@
       {
         "titulo": "10% de descuento exclusivo",
         "texto": "Eres de los pocos afortunados. Disfruta de este descuento al contratar cualquiera de los paquetes Premium de Storytellers.",
-        "imagen": "",
+        "imagen": "/img/paquetes.jpg",
         "destacado": "10%",
         "pdf": "/servicios.pdf",
         "pdfTexto": "Ver servicios y paquetes (PDF)"
