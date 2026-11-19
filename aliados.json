@@ -8,7 +8,10 @@
       {
         "titulo": "10% de descuento exclusivo",
         "texto": "Eres de los pocos afortunados. Disfruta de este descuento al contratar cualquiera de los paquetes Premium de Storytellers.",
-        "destacado": "servicios.pdf"
+        "imagen": "",
+        "destacado": "10%",
+        "pdf": "https://3387cf54-caad-4c3f-81fa-59a879d8985d.filesusr.com/ugd/16e545_b1838578d5254b469abab3ae90c89125.pdf",
+        "pdfTexto": "Ver servicios y paquetes (PDF)"
       },
       {
         "titulo": "Vintage Case con 40 fotos",
@@ -17,8 +20,8 @@
       },
       {
         "titulo": "e-Session",
-        "texto": "UNA hora de cobertura para una sesión fotográfica previa a la boda, que te dará el material fotográfico para tu Save the Date.",
-        "video": "/img/save-the-date.mp4"
+        "texto": "1 hora de cobertura para una sesión fotográfica previa a la boda, que te dará el material fotográfico para el gran anuncio.",
+        "imagen": "/img/e-session.jpg"
       }
     ],
     "condiciones": "Estos beneficios no son acumulables con otras promociones, no son intercambiables por dinero en efectivo, ni por descuentos y servicios de Storytellers. Las locaciones para sesiones fotográficas las debe cubrir el beneficiario. Aplican restricciones."
