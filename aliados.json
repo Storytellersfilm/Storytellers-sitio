@@ -7,7 +7,7 @@
     "beneficios": [
       {
         "titulo": "10% de descuento exclusivo",
-        "texto": "Eres de los pocos afortunados. Disfruta de este descuento al contratar cualquiera de los paquetes Premium de Storytellers.",
+        "texto": "Eres de los afortunados. Disfruta de este descuento al contratar cualquiera de los paquetes Premium de Storytellers.",
         "imagen": "/img/paquetes.jpg",
         "destacado": "10%",
         "pdf": "/servicios.pdf",
@@ -15,12 +15,12 @@
       },
       {
         "titulo": "Vintage Case con 40 fotos",
-        "texto": "Exclusivo para nuestros únicos 10 clientes Premium. Estuche de bambú con 40 fotografías en el interior de 5x6 pulgadas.",
+        "texto": "Exclusivo para nuestros clientes Premium. Estuche de bambú con 40 fotografías en el interior de 5x7 pulgadas.",
         "imagen": "/img/vintage-case.jpg"
       },
       {
         "titulo": "e-Session",
-        "texto": "1 hora de cobertura para una sesión fotográfica previa a la boda, que te dará el material fotográfico para el gran anuncio.",
+        "texto": "1 hora de cobertura para una sesión fotográfica previa a la boda, que te dará el material fotográfico para tu "Save The Date.",
         "video": "/img/save-the-date.mp4"
       }
     ],
