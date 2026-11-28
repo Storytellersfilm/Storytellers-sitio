@@ -38,15 +38,16 @@
     padding: clamp(26px, 5vh, 44px) var(--margen) clamp(28px, 5.5vh, 48px);
   }
   .hero.con-extra { padding-top: clamp(16px, 3vh, 26px); }
-  .hero-top { display: flex; justify-content: center; margin-bottom: clamp(14px, 2.5vh, 22px); }
+  .hero-top { display: flex; justify-content: center; margin-bottom: clamp(16px, 3vh, 26px); }
   .hero-top a { display: inline-block; line-height: 0; }
-  .hero-top img { height: clamp(84px, 10vw, 112px); width: auto; display: block; }
+  .hero-top img { height: clamp(120px, 17vw, 190px); width: auto; max-width: 100%; display: block; }
   .hero.con-extra { text-align: center; }
   .hero.con-extra .hero-inner { margin: 0 auto; }
   .hero-inner { max-width: 900px; }
   .hero .logo { display: inline-block; line-height: 0; margin-top: clamp(16px, 2.6vh, 24px); }
   .hero .logo img { height: clamp(18px, 2.4vw, 24px); width: auto; display: block; transition: opacity .2s; }
   .hero .logo:hover img { opacity: .75; }
+  .hero h1:empty { display: none; }
   .hero p {
     font-style: italic;
     font-size: clamp(1.2rem, 3vw, 1.7rem);
@@ -203,11 +204,11 @@
   const a = data[slug];
   if (!a) return noEncontrada();
 
-  document.title = a.nombre + " | Beneficios StorytellerS";
+  document.title = (a.nombre ? a.nombre + " | " : "") + "Beneficios StorytellerS";
 
   const hero = el("section", "hero");
   const inner = el("div", "hero-inner");
-  inner.append(el("h1", "", a.nombre));
+  if (a.nombre) inner.append(el("h1", "", a.nombre));
   inner.append(el("p", "", a.intro || "Te obsequia estos exclusivos beneficios"));
   const logo = el("a", "logo");
   logo.href = "/";
