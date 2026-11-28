@@ -37,13 +37,15 @@
     color: var(--crema);
     padding: clamp(26px, 5vh, 44px) var(--margen) clamp(28px, 5.5vh, 48px);
   }
-  .hero.con-extra { padding-top: clamp(16px, 3vh, 26px); }
-  .hero-top { display: flex; justify-content: center; margin-bottom: clamp(16px, 3vh, 26px); }
-  .hero-top a { display: inline-block; line-height: 0; }
-  .hero-top img { height: clamp(120px, 17vw, 190px); width: auto; max-width: 100%; display: block; }
-  .hero.con-extra { text-align: center; }
-  .hero.con-extra .hero-inner { margin: 0 auto; }
-  .hero-inner { max-width: 900px; }
+  .hero-fila { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(18px, 3vw, 36px); }
+  .hero-fila .logo-extra { display: inline-block; line-height: 0; }
+  .hero-fila .logo-extra img { height: clamp(110px, 16vw, 170px); width: auto; max-width: 100%; display: block; }
+  .hero-fila p { margin-top: 0; }
+  .hero-fila + .logo { margin-top: clamp(24px, 4vh, 34px); }
+  @media (min-width: 680px) {
+    .hero-fila p { border-left: 1px solid var(--dorado); padding-left: clamp(22px, 3vw, 36px); max-width: 22ch; line-height: 1.25; }
+  }
+  .hero-inner { max-width: 1000px; }
   .hero .logo { display: inline-block; line-height: 0; margin-top: clamp(16px, 2.6vh, 24px); }
   .hero .logo img { height: clamp(18px, 2.4vw, 24px); width: auto; display: block; transition: opacity .2s; }
   .hero .logo:hover img { opacity: .75; }
@@ -209,7 +211,28 @@
   const hero = el("section", "hero");
   const inner = el("div", "hero-inner");
   if (a.nombre) inner.append(el("h1", "", a.nombre));
-  inner.append(el("p", "", a.intro || "Te obsequia estos exclusivos beneficios"));
+  const frase = el("p", "", a.intro || "Te obsequia estos exclusivos beneficios");
+
+  if (a.logo) {
+    const fila = el("div", "hero-fila");
+    const im = new Image();
+    im.src = a.logo;
+    im.alt = a.logoAlt || "";
+    let envoltura;
+    if (a.logoLink) {
+      envoltura = el("a", "logo-extra");
+      envoltura.href = a.logoLink; envoltura.target = "_blank"; envoltura.rel = "noopener";
+    } else {
+      envoltura = el("span", "logo-extra");
+    }
+    envoltura.append(im);
+    im.onerror = function () { envoltura.remove(); };
+    fila.append(envoltura, frase);
+    inner.append(fila);
+  } else {
+    inner.append(frase);
+  }
+
   const logo = el("a", "logo");
   logo.href = "/";
   logo.target = "_blank";
@@ -220,23 +243,6 @@
   li.alt = "StorytellerS Cinematography";
   logo.append(li);
   inner.append(logo);
-  if (a.logo) {
-    hero.classList.add("con-extra");
-    const top = el("div", "hero-top");
-    const im = new Image();
-    im.src = a.logo;
-    im.alt = a.logoAlt || "";
-    im.onerror = function () { hero.classList.remove("con-extra"); top.remove(); };
-    if (a.logoLink) {
-      const l = el("a");
-      l.href = a.logoLink; l.target = "_blank"; l.rel = "noopener";
-      l.append(im);
-      top.append(l);
-    } else {
-      top.append(im);
-    }
-    hero.append(top);
-  }
   hero.append(inner);
 
   const main = el("main");
