@@ -1,6 +1,8 @@
 {
   "posada-senorial": {
     "nombre": "Hotel Posada Señorial",
+    "logo": "/img/logo-posada-senorial.png",
+    "logoAlt": "Posada Señorial",
     "intro": "Te obsequia estos exclusivos beneficios",
     "whatsapp": "522221547250",
     "mensaje": "Hola, vengo de parte del Hotel Posada Señorial y quiero los beneficios Premium de Storytellers.",
