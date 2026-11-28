@@ -41,13 +41,15 @@
   .hero-fila .logo-extra { display: inline-block; line-height: 0; }
   .hero-fila .logo-extra img { height: clamp(110px, 16vw, 170px); width: auto; max-width: 100%; display: block; }
   .hero-fila p { margin-top: 0; }
-  .hero-fila + .logo { margin-top: clamp(24px, 4vh, 34px); }
+  .hero-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .hero-col .logo { margin-top: clamp(14px, 2.4vh, 22px); }
   @media (min-width: 680px) {
-    .hero-fila p { border-left: 1px solid var(--dorado); padding-left: clamp(22px, 3vw, 36px); max-width: 22ch; line-height: 1.25; }
+    .hero-col { border-left: 1px solid var(--dorado); padding-left: clamp(22px, 3vw, 36px); }
+    .hero-col p { max-width: 22ch; line-height: 1.25; }
   }
   .hero-inner { max-width: 1000px; }
   .hero .logo { display: inline-block; line-height: 0; margin-top: clamp(16px, 2.6vh, 24px); }
-  .hero .logo img { height: clamp(18px, 2.4vw, 24px); width: auto; display: block; transition: opacity .2s; }
+  .hero .logo img { height: clamp(30px, 4vw, 44px); width: auto; display: block; transition: opacity .2s; }
   .hero .logo:hover img { opacity: .75; }
   .hero h1:empty { display: none; }
   .hero p {
@@ -227,7 +229,9 @@
     }
     envoltura.append(im);
     im.onerror = function () { envoltura.remove(); };
-    fila.append(envoltura, frase);
+    const col = el("div", "hero-col");
+    col.append(frase);
+    fila.append(envoltura, col);
     inner.append(fila);
   } else {
     inner.append(frase);
@@ -242,7 +246,7 @@
   li.src = "/img/logo-storytellers.png";
   li.alt = "StorytellerS Cinematography";
   logo.append(li);
-  inner.append(logo);
+  if (a.logo) inner.querySelector(".hero-col").append(logo); else inner.append(logo);
   hero.append(inner);
 
   const main = el("main");
